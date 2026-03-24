@@ -1,72 +1,50 @@
-/* 
-========================================================================
-🚨 终极防报错复制粘贴指南 (Foolproof Tailwind UI Guide) 🚨
+const categories = [
+  {
+    name: 'Handcrafted Collection',
+    href: '#',
+    imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-collection-01.jpg',
+    imageAlt: 'Brown leather key ring with brass metal loops and rivets on wood table.',
+    description: 'Keep your phone, keys, and wallet together, so you can lose everything at once.',
+  },
+  {
+    name: 'Organized Desk Collection',
+    href: '#',
+    imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-collection-02.jpg',
+    imageAlt: 'Natural leather mouse pad on white desk next to porcelain mug and keyboard.',
+    description: 'The rest of the house will still be a mess, but your desk will look great.',
+  },
+  {
+    name: 'Focus Collection',
+    href: '#',
+    imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-collection-03.jpg',
+    imageAlt: 'Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.',
+    description: 'Be more productive than enterprise project managers with a single piece of paper.',
+  },
+]
 
-1. 从 Tailwind UI 复制任何 TSX/JSX 代码块。
-2. 将代码全部粘贴到这个文件里（覆盖这个开头的注释也没关系）。
-3. 【关键步骤】：如果你复制过来的代码开头是 `export default function Example()`：
-   👉 请将其改成普通函数：`function Example()` （把 export default 删掉）
-4. 确保文件最底部保留下面的 `export default function Page()` 包装器！
-5. 在 `Page()` 里调用你的 UI 组件（比如 `<Example />`），传死它需要的数据！
-
-为什么这么做？因为 Next.js 的 URL 路由入口文件 (page.tsx) 必须没有任何强求的外部数据加载参数！
-========================================================================
-*/
-
-/** 
- * 👇 这里放你从 Tailwind UI 复制过来的长篇大论的原代码 👇 
- */
-function DemoHeaderSection({
-  content,
-}: {
-  content: any // 这里用了 any 就不怕外部数据类型错误了！
-}) {
+export default function Example() {
   return (
-    <div className="relative isolate overflow-hidden bg-white dark:bg-gray-900">
-      <div className="px-6 py-24 sm:py-32 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl dark:text-white">
-            {content.heading}
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg/8 text-pretty text-gray-600 dark:text-gray-300">
-            {content.description}
-          </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href={content.primaryCta.href}
-              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 dark:bg-white/15 dark:text-white dark:hover:bg-white/20"
-            >
-              {content.primaryCta.label}
+    <div className="bg-white">
+      <div className="mx-auto max-w-xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900">Shop by Collection</h2>
+        <p className="mt-4 text-base text-gray-500">
+          Each season, we collaborate with world-class designers to create a collection inspired by the natural world.
+        </p>
+
+        <div className="mt-10 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-0 lg:gap-x-8">
+          {categories.map((category) => (
+            <a key={category.name} href={category.href} className="group block">
+              <img
+                alt={category.imageAlt}
+                src={category.imageSrc}
+                className="aspect-3/2 w-full rounded-lg object-cover group-hover:opacity-75 lg:aspect-5/6"
+              />
+              <h3 className="mt-4 text-base font-semibold text-gray-900">{category.name}</h3>
+              <p className="mt-2 text-sm text-gray-500">{category.description}</p>
             </a>
-            <a
-              href={content.secondaryCta.href}
-              className="text-sm/6 font-semibold text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300"
-            >
-              {content.secondaryCta.label} <span aria-hidden="true">{content.secondaryCta.arrowLabel}</span>
-            </a>
-          </div>
+          ))}
         </div>
       </div>
-      {/* Background SVG Grid omitted for brevity in demo, keep your original components intact! */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
     </div>
-  )
-}
-
-/** 
- * 👇 这是永远雷打不动的容器大门 👇 
- * Next.js 只认这个 export default。你永远只要在这个大门里调用上面的炒锅即可。
- */
-export default function Page() {
-  return (
-    <DemoHeaderSection
-      content={{
-        heading: 'The Ultimate Web Automation',
-        description: 'Your pure React UI blocks are natively deployed to Edge, bypassing complex dependencies and strict typing bugs.',
-        primaryCta: { label: 'Explore Gallery', href: '#' },
-        secondaryCta: { label: 'View Source', href: '#', arrowLabel: '→' },
-        backgroundGradient: { firstColor: '#4f46e5', secondColor: '#ec4899' },
-      }}
-    />
   )
 }
