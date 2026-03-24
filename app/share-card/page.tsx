@@ -16,7 +16,7 @@ type Content = {
   }
 }
 
-export default function DemoHeaderSection({
+function DemoHeaderSection({
   content,
 }: {
   content: Content
@@ -67,5 +67,19 @@ export default function DemoHeaderSection({
         </defs>
       </svg>
     </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <DemoHeaderSection
+      content={{
+        heading: 'Tailwind UI Snapshot Flow',
+        description: 'Vercel is now successfully building your beautifully decoupled UI blocks, ready to be snapshotted by Browserless via n8n.',
+        primaryCta: { label: 'Get Started', href: '#' },
+        secondaryCta: { label: 'Learn More', href: '#', arrowLabel: '→' },
+        backgroundGradient: { firstColor: '#4f46e5', secondColor: '#ec4899' },
+      }}
+    />
   )
 }
