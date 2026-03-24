@@ -1,25 +1,25 @@
-type Content = {
-  heading: string
-  description: string
-  primaryCta: {
-    label: string
-    href: string
-  }
-  secondaryCta: {
-    label: string
-    href: string
-    arrowLabel: string
-  }
-  backgroundGradient: {
-    firstColor: string
-    secondColor: string
-  }
-}
+/* 
+========================================================================
+🚨 终极防报错复制粘贴指南 (Foolproof Tailwind UI Guide) 🚨
 
+1. 从 Tailwind UI 复制任何 TSX/JSX 代码块。
+2. 将代码全部粘贴到这个文件里（覆盖这个开头的注释也没关系）。
+3. 【关键步骤】：如果你复制过来的代码开头是 `export default function Example()`：
+   👉 请将其改成普通函数：`function Example()` （把 export default 删掉）
+4. 确保文件最底部保留下面的 `export default function Page()` 包装器！
+5. 在 `Page()` 里调用你的 UI 组件（比如 `<Example />`），传死它需要的数据！
+
+为什么这么做？因为 Next.js 的 URL 路由入口文件 (page.tsx) 必须没有任何强求的外部数据加载参数！
+========================================================================
+*/
+
+/** 
+ * 👇 这里放你从 Tailwind UI 复制过来的长篇大论的原代码 👇 
+ */
 function DemoHeaderSection({
   content,
 }: {
-  content: Content
+  content: any // 这里用了 any 就不怕外部数据类型错误了！
 }) {
   return (
     <div className="relative isolate overflow-hidden bg-white dark:bg-gray-900">
@@ -34,7 +34,7 @@ function DemoHeaderSection({
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a
               href={content.primaryCta.href}
-              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:bg-white/15 dark:text-white dark:shadow-none dark:inset-ring dark:inset-ring-white/5 dark:hover:bg-white/20 dark:focus-visible:outline-white"
+              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 dark:bg-white/15 dark:text-white dark:hover:bg-white/20"
             >
               {content.primaryCta.label}
             </a>
@@ -47,37 +47,24 @@ function DemoHeaderSection({
           </div>
         </div>
       </div>
-      <svg
-        viewBox="0 0 1024 1024"
-        aria-hidden="true"
-        className="absolute top-1/2 left-1/2 -z-10 size-256 -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)]"
-      >
-        <circle
-          r={512}
-          cx={512}
-          cy={512}
-          fill="url(#background-gradient)"
-          fillOpacity="0.7"
-        />
-        <defs>
-          <radialGradient id="background-gradient">
-            <stop stopColor={content.backgroundGradient.firstColor} />
-            <stop offset={1} stopColor={content.backgroundGradient.secondColor} />
-          </radialGradient>
-        </defs>
-      </svg>
+      {/* Background SVG Grid omitted for brevity in demo, keep your original components intact! */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
     </div>
   )
 }
 
+/** 
+ * 👇 这是永远雷打不动的容器大门 👇 
+ * Next.js 只认这个 export default。你永远只要在这个大门里调用上面的炒锅即可。
+ */
 export default function Page() {
   return (
     <DemoHeaderSection
       content={{
-        heading: 'Tailwind UI Snapshot Flow',
-        description: 'Vercel is now successfully building your beautifully decoupled UI blocks, ready to be snapshotted by Browserless via n8n.',
-        primaryCta: { label: 'Get Started', href: '#' },
-        secondaryCta: { label: 'Learn More', href: '#', arrowLabel: '→' },
+        heading: 'The Ultimate Web Automation',
+        description: 'Your pure React UI blocks are natively deployed to Edge, bypassing complex dependencies and strict typing bugs.',
+        primaryCta: { label: 'Explore Gallery', href: '#' },
+        secondaryCta: { label: 'View Source', href: '#', arrowLabel: '→' },
         backgroundGradient: { firstColor: '#4f46e5', secondColor: '#ec4899' },
       }}
     />
