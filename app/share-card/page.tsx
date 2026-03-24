@@ -95,7 +95,9 @@ const product = {
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-
+function classNames(...classes: any[]) {
+  return classes.filter(Boolean).join(' ')
+}
 export default function Example() {
   return (
     <div className="bg-white">
