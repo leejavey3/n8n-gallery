@@ -1,49 +1,41 @@
-const categories = [
-  {
-    name: 'Handcrafted Collection',
-    href: '#',
-    imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-collection-01.jpg',
-    imageAlt: 'Brown leather key ring with brass metal loops and rivets on wood table.',
-    description: 'Keep your phone, keys, and wallet together, so you can lose everything at once.',
-  },
-  {
-    name: 'Organized Desk Collection',
-    href: '#',
-    imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-collection-02.jpg',
-    imageAlt: 'Natural leather mouse pad on white desk next to porcelain mug and keyboard.',
-    description: 'The rest of the house will still be a mess, but your desk will look great.',
-  },
-  {
-    name: 'Focus Collection',
-    href: '#',
-    imageSrc: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-collection-03.jpg',
-    imageAlt: 'Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.',
-    description: 'Be more productive than enterprise project managers with a single piece of paper.',
-  },
+const features = [
+  { name: 'Origin', description: 'Designed by Good Goods, Inc.' },
+  { name: 'Material', description: 'Solid walnut base with rare earth magnets and polycarbonate add-ons.' },
+  { name: 'Dimensions', description: '15" x 3.75" x .75"' },
+  { name: 'Finish', description: 'Hand sanded and finished with natural oil' },
+  { name: 'Includes', description: 'Pen Tray, Phone Tray, Small Tray, Large Tray, Sticky Note Holder' },
+  { name: 'Considerations', description: 'Made from natural materials. Grain and color vary with each item.' },
 ]
 
 export default function Example() {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">Shop by Collection</h2>
-        <p className="mt-4 text-base text-gray-500">
-          Each season, we collaborate with world-class designers to create a collection inspired by the natural world.
-        </p>
+      <div aria-hidden="true" className="relative">
+        <img
+          alt=""
+          src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-feature-02-full-width.jpg"
+          className="h-96 w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-white" />
+      </div>
 
-        <div className="mt-10 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-0 lg:gap-x-8">
-          {categories.map((category) => (
-            <a key={category.name} href={category.href} className="group block">
-              <img
-                alt={category.imageAlt}
-                src={category.imageSrc}
-                className="aspect-3/2 w-full rounded-lg object-cover group-hover:opacity-75 lg:aspect-5/6"
-              />
-              <h3 className="mt-4 text-base font-semibold text-gray-900">{category.name}</h3>
-              <p className="mt-2 text-sm text-gray-500">{category.description}</p>
-            </a>
-          ))}
+      <div className="relative mx-auto -mt-12 max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center lg:max-w-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Technical Specifications</h2>
+          <p className="mt-4 text-gray-500">
+            Organize is a system to keep your desk tidy and photo-worthy all day long. Procrastinate your work while you
+            meticulously arrange items into dedicated trays.
+          </p>
         </div>
+
+        <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:max-w-none lg:grid-cols-3 lg:gap-x-8">
+          {features.map((feature) => (
+            <div key={feature.name} className="border-t border-gray-200 pt-4">
+              <dt className="font-medium text-gray-900">{feature.name}</dt>
+              <dd className="mt-2 text-sm text-gray-500">{feature.description}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
   )
