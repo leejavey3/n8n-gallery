@@ -1,15 +1,4 @@
-export default async function ShareCard({
-  searchParams,
-}: {
-  searchParams: { username?: string; role?: string };
-}) {
-  // Extract parameters from context
-  const resolvedParams = await searchParams;
-  const username = resolvedParams?.username || "神秘黑客";
-  const role = resolvedParams?.role || "全栈自动化专家";
-
-  return (
-    'use client'
+'use client'
 
 import { Fragment, useState } from 'react'
 import {
@@ -889,6 +878,4 @@ export default function Example() {
       </div>
     </div>
   )
-}
-  );
 }
