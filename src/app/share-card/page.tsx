@@ -1,42 +1,71 @@
-const features = [
-  { name: 'Origin', description: 'Designed by Good Goods, Inc.' },
-  { name: 'Material', description: 'Solid walnut base with rare earth magnets and polycarbonate add-ons.' },
-  { name: 'Dimensions', description: '15" x 3.75" x .75"' },
-  { name: 'Finish', description: 'Hand sanded and finished with natural oil' },
-  { name: 'Includes', description: 'Pen Tray, Phone Tray, Small Tray, Large Tray, Sticky Note Holder' },
-  { name: 'Considerations', description: 'Made from natural materials. Grain and color vary with each item.' },
-]
+type Content = {
+  heading: string
+  description: string
+  primaryCta: {
+    label: string
+    href: string
+  }
+  secondaryCta: {
+    label: string
+    href: string
+    arrowLabel: string
+  }
+  backgroundGradient: {
+    firstColor: string
+    secondColor: string
+  }
+}
 
-export default function Example() {
+export default function DemoHeaderSection({
+  content,
+}: {
+  content: Content
+}) {
   return (
-    <div className="bg-white">
-      <div aria-hidden="true" className="relative">
-        <img
-          alt=""
-          src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-feature-02-full-width.jpg"
-          className="h-96 w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-white" />
-      </div>
-
-      <div className="relative mx-auto -mt-12 max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center lg:max-w-4xl">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Technical Specifications</h2>
-          <p className="mt-4 text-gray-500">
-            Organize is a system to keep your desk tidy and photo-worthy all day long. Procrastinate your work while you
-            meticulously arrange items into dedicated trays.
+    <div className="relative isolate overflow-hidden bg-white dark:bg-gray-900">
+      <div className="px-6 py-24 sm:py-32 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl dark:text-white">
+            {content.heading}
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg/8 text-pretty text-gray-600 dark:text-gray-300">
+            {content.description}
           </p>
+          <div className="mt-10 flex items-center justify-center gap-x-6">
+            <a
+              href={content.primaryCta.href}
+              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:bg-white/15 dark:text-white dark:shadow-none dark:inset-ring dark:inset-ring-white/5 dark:hover:bg-white/20 dark:focus-visible:outline-white"
+            >
+              {content.primaryCta.label}
+            </a>
+            <a
+              href={content.secondaryCta.href}
+              className="text-sm/6 font-semibold text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300"
+            >
+              {content.secondaryCta.label} <span aria-hidden="true">{content.secondaryCta.arrowLabel}</span>
+            </a>
+          </div>
         </div>
-
-        <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:max-w-none lg:grid-cols-3 lg:gap-x-8">
-          {features.map((feature) => (
-            <div key={feature.name} className="border-t border-gray-200 pt-4">
-              <dt className="font-medium text-gray-900">{feature.name}</dt>
-              <dd className="mt-2 text-sm text-gray-500">{feature.description}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
+      <svg
+        viewBox="0 0 1024 1024"
+        aria-hidden="true"
+        className="absolute top-1/2 left-1/2 -z-10 size-256 -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)]"
+      >
+        <circle
+          r={512}
+          cx={512}
+          cy={512}
+          fill="url(#background-gradient)"
+          fillOpacity="0.7"
+        />
+        <defs>
+          <radialGradient id="background-gradient">
+            <stop stopColor={content.backgroundGradient.firstColor} />
+            <stop offset={1} stopColor={content.backgroundGradient.secondColor} />
+          </radialGradient>
+        </defs>
+      </svg>
     </div>
   )
 }
