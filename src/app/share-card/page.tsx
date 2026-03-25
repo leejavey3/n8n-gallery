@@ -10,17 +10,23 @@ type Content = {
     href: string
     arrowLabel: string
   }
-  backgroundGradient: {
-    firstColor: string
-    secondColor: string
+  gradient: {
+    circleFill: string
+    gradientId: string
+    stops: Array<{
+      offset: number
+      color: string
+    }>
   }
 }
 
-export default function DemoHeaderSection({
+export default function Example({
   content,
 }: {
   content: Content
 }) {
+  const gradient = content.gradient
+
   return (
     <div className="relative isolate overflow-hidden bg-white dark:bg-gray-900">
       <div className="px-6 py-24 sm:py-32 lg:px-8">
@@ -52,17 +58,12 @@ export default function DemoHeaderSection({
         aria-hidden="true"
         className="absolute top-1/2 left-1/2 -z-10 size-256 -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)]"
       >
-        <circle
-          r={512}
-          cx={512}
-          cy={512}
-          fill="url(#background-gradient)"
-          fillOpacity="0.7"
-        />
+        <circle r={512} cx={512} cy={512} fill={gradient.circleFill} fillOpacity="0.7" />
         <defs>
-          <radialGradient id="background-gradient">
-            <stop stopColor={content.backgroundGradient.firstColor} />
-            <stop offset={1} stopColor={content.backgroundGradient.secondColor} />
+          <radialGradient id={gradient.gradientId}>
+            {gradient.stops.map((stop) => (
+              <stop key={stop.offset} offset={stop.offset} stopColor={stop.color} />
+            ))}
           </radialGradient>
         </defs>
       </svg>
